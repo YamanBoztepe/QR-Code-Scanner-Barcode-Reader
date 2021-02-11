@@ -9,13 +9,18 @@
 /* Begin PBXBuildFile section */
 		1C2DE8C225C5A45200A528B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2DE8C125C5A45200A528B2 /* AppDelegate.swift */; };
 		1C2DE8C425C5A45200A528B2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2DE8C325C5A45200A528B2 /* SceneDelegate.swift */; };
-		1C2DE8C625C5A45200A528B2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2DE8C525C5A45200A528B2 /* ViewController.swift */; };
+		1C2DE8C625C5A45200A528B2 /* QRScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2DE8C525C5A45200A528B2 /* QRScannerController.swift */; };
 		1C2DE8C925C5A45200A528B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C2DE8C725C5A45200A528B2 /* Main.storyboard */; };
 		1C2DE8CC25C5A45200A528B2 /* QR_Code_Scanner___Barcode_Reader.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1C2DE8CA25C5A45200A528B2 /* QR_Code_Scanner___Barcode_Reader.xcdatamodeld */; };
 		1C2DE8CE25C5A45300A528B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C2DE8CD25C5A45300A528B2 /* Assets.xcassets */; };
 		1C2DE8D125C5A45300A528B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C2DE8CF25C5A45300A528B2 /* LaunchScreen.storyboard */; };
 		1C2DE8DC25C5A45300A528B2 /* QR_Code_Scanner___Barcode_ReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2DE8DB25C5A45300A528B2 /* QR_Code_Scanner___Barcode_ReaderTests.swift */; };
 		1C2DE8E725C5A45300A528B2 /* QR_Code_Scanner___Barcode_ReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2DE8E625C5A45300A528B2 /* QR_Code_Scanner___Barcode_ReaderUITests.swift */; };
+		1C2DE8F825C5AC0800A528B2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2DE8F725C5AC0800A528B2 /* Extensions.swift */; };
+		1C5BFE6725D04A5400C70898 /* OutputTextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5BFE6625D04A5400C70898 /* OutputTextController.swift */; };
+		1C5BFE6C25D04ABA00C70898 /* OutputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5BFE6B25D04ABA00C70898 /* OutputTextView.swift */; };
+		1CED297025D58D370086ED46 /* CustomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CED296F25D58D370086ED46 /* CustomBar.swift */; };
+		1CED297825D5AC4C0086ED46 /* ScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CED297725D5AC4C0086ED46 /* ScanView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +44,7 @@
 		1C2DE8BE25C5A45200A528B2 /* QR Code Scanner & Barcode Reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QR Code Scanner & Barcode Reader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C2DE8C125C5A45200A528B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C2DE8C325C5A45200A528B2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1C2DE8C525C5A45200A528B2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1C2DE8C525C5A45200A528B2 /* QRScannerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerController.swift; sourceTree = "<group>"; };
 		1C2DE8C825C5A45200A528B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1C2DE8CB25C5A45200A528B2 /* QR_Code_Scanner___Barcode_Reader.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "QR_Code_Scanner___Barcode_Reader.xcdatamodel"; sourceTree = "<group>"; };
 		1C2DE8CD25C5A45300A528B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,6 +56,11 @@
 		1C2DE8E225C5A45300A528B2 /* QR Code Scanner & Barcode ReaderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "QR Code Scanner & Barcode ReaderUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C2DE8E625C5A45300A528B2 /* QR_Code_Scanner___Barcode_ReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QR_Code_Scanner___Barcode_ReaderUITests.swift"; sourceTree = "<group>"; };
 		1C2DE8E825C5A45300A528B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1C2DE8F725C5AC0800A528B2 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		1C5BFE6625D04A5400C70898 /* OutputTextController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputTextController.swift; sourceTree = "<group>"; };
+		1C5BFE6B25D04ABA00C70898 /* OutputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputTextView.swift; sourceTree = "<group>"; };
+		1CED296F25D58D370086ED46 /* CustomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBar.swift; sourceTree = "<group>"; };
+		1CED297725D5AC4C0086ED46 /* ScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,14 +111,16 @@
 		1C2DE8C025C5A45200A528B2 /* QR Code Scanner & Barcode Reader */ = {
 			isa = PBXGroup;
 			children = (
+				1C5BFE5A25D049B200C70898 /* Model */,
+				1C5BFE5925D049AD00C70898 /* View */,
+				1C5BFE5825D0499E00C70898 /* Controller */,
+				1C2DE8C725C5A45200A528B2 /* Main.storyboard */,
+				1C2DE8CF25C5A45300A528B2 /* LaunchScreen.storyboard */,
 				1C2DE8C125C5A45200A528B2 /* AppDelegate.swift */,
 				1C2DE8C325C5A45200A528B2 /* SceneDelegate.swift */,
-				1C2DE8C525C5A45200A528B2 /* ViewController.swift */,
-				1C2DE8C725C5A45200A528B2 /* Main.storyboard */,
-				1C2DE8CD25C5A45300A528B2 /* Assets.xcassets */,
-				1C2DE8CF25C5A45300A528B2 /* LaunchScreen.storyboard */,
 				1C2DE8D225C5A45300A528B2 /* Info.plist */,
 				1C2DE8CA25C5A45200A528B2 /* QR_Code_Scanner___Barcode_Reader.xcdatamodeld */,
+				1C2DE8CD25C5A45300A528B2 /* Assets.xcassets */,
 			);
 			path = "QR Code Scanner & Barcode Reader";
 			sourceTree = "<group>";
@@ -129,6 +141,33 @@
 				1C2DE8E825C5A45300A528B2 /* Info.plist */,
 			);
 			path = "QR Code Scanner & Barcode ReaderUITests";
+			sourceTree = "<group>";
+		};
+		1C5BFE5825D0499E00C70898 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1C2DE8C525C5A45200A528B2 /* QRScannerController.swift */,
+				1C5BFE6625D04A5400C70898 /* OutputTextController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1C5BFE5925D049AD00C70898 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1C5BFE6B25D04ABA00C70898 /* OutputTextView.swift */,
+				1CED296F25D58D370086ED46 /* CustomBar.swift */,
+				1CED297725D5AC4C0086ED46 /* ScanView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1C5BFE5A25D049B200C70898 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1C2DE8F725C5AC0800A528B2 /* Extensions.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,10 +300,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C2DE8C625C5A45200A528B2 /* ViewController.swift in Sources */,
+				1CED297025D58D370086ED46 /* CustomBar.swift in Sources */,
+				1C5BFE6C25D04ABA00C70898 /* OutputTextView.swift in Sources */,
+				1C2DE8F825C5AC0800A528B2 /* Extensions.swift in Sources */,
+				1C2DE8C625C5A45200A528B2 /* QRScannerController.swift in Sources */,
 				1C2DE8C225C5A45200A528B2 /* AppDelegate.swift in Sources */,
+				1CED297825D5AC4C0086ED46 /* ScanView.swift in Sources */,
 				1C2DE8CC25C5A45200A528B2 /* QR_Code_Scanner___Barcode_Reader.xcdatamodeld in Sources */,
 				1C2DE8C425C5A45200A528B2 /* SceneDelegate.swift in Sources */,
+				1C5BFE6725D04A5400C70898 /* OutputTextController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
