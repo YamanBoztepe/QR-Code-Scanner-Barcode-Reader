@@ -71,4 +71,18 @@ extension UIView {
             heightAnchor.constraint(equalToConstant: size.height).isActive = true
         }
     }
+    
+    func slideAnimation(duration: CFTimeInterval) {
+        
+        let slideLeftTransition = CATransition()
+        
+        slideLeftTransition.type = .push
+        slideLeftTransition.subtype = .fromLeft
+        slideLeftTransition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        slideLeftTransition.duration = duration
+        slideLeftTransition.repeatCount = Float.infinity
+        
+        layer.add(slideLeftTransition, forKey: "slideLeftTransition")
+        
+    }
 }

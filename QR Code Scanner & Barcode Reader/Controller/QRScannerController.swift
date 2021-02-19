@@ -7,13 +7,21 @@
 
 import UIKit
 import AVFoundation
+import CoreData
+
+let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
 class QRScannerController: UIViewController {
 
-    var captureSession = AVCaptureSession()
-    var videoPreviewLayer = AVCaptureVideoPreviewLayer()
+    fileprivate var captureSession = AVCaptureSession()
+    fileprivate var videoPreviewLayer = AVCaptureVideoPreviewLayer()
     
-    let scanView = ScanView()
+    fileprivate let scanView = ScanView()
+    fileprivate let historyButton: UIButton = {
+        let btn = UIButton()
+        btn.setImage(UIImage(named: "HistoryButton"), for: .normal)
+        return btn
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,11 +69,20 @@ class QRScannerController: UIViewController {
         setPreviewLayer()
         navigationController?.navigationBar.isHidden = true
         
-        [scanView].forEach(view.addSubview(_:))
+        [scanView,historyButton].forEach(view.addSubview(_:))
+        
         _ = scanView.anchor(top: view.topAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor)
+        _ = historyButton.anchor(top: view.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor,padding: .init(top: view.frame.width/10, left: 0, bottom: 0, right: -5))
+        
+        historyButton.addTarget(self, action: #selector(historyButtonPressed), for: .touchUpInside)
         
     }
     
+    @objc fileprivate func historyButtonPressed() {
+        
+        let vc = HistoryController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
     
     fileprivate func setPreviewLayer() {
         videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
@@ -89,6 +106,12 @@ class QRScannerController: UIViewController {
             present(alert, animated: true, completion: nil)
             
         }
+    }
+    
+    fileprivate func saveData() {
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let metadataOutput = MetadataOutput()
     }
 
 }
