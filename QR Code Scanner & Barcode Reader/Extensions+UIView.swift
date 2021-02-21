@@ -80,7 +80,6 @@ extension UIView {
         slideLeftTransition.subtype = .fromLeft
         slideLeftTransition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         slideLeftTransition.duration = duration
-        slideLeftTransition.repeatCount = Float.infinity
         
         layer.add(slideLeftTransition, forKey: "slideLeftTransition")
         

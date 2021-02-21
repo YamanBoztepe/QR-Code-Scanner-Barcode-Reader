@@ -11,13 +11,13 @@ class HistoryCell: UITableViewCell {
     
     static let IDENTIFIER = "HistoryCell"
     
-    fileprivate let cellView: UIView = {
+    let cellView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .darkGray
         return view
     }()
     
-    fileprivate let lblDate: UILabel = {
+    let lblDate: UILabel = {
         let lbl = UILabel()
         lbl.textColor = .white
         lbl.textAlignment = .center
@@ -25,23 +25,16 @@ class HistoryCell: UITableViewCell {
         return lbl
     }()
     
-    fileprivate let lblMetaData: UILabel = {
+    let lblMetaData: UILabel = {
         let lbl = UILabel()
-        lbl.text = " "
+        lbl.textColor = .lightGray
+        lbl.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
         return lbl
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        var i = 0
-        while i < Int(frame.width/3) {
-            
-            lblMetaData.text! += " "
-            i += 1
-        }
-        
-        lblMetaData.text! += "123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789"
     }
     
     override func layoutSubviews() {
@@ -53,7 +46,7 @@ class HistoryCell: UITableViewCell {
     
     fileprivate func setLayout() {
         
-        backgroundColor = .clear
+        backgroundColor = .gray
         selectionStyle = .none
         
         [lblDate,lblMetaData].forEach(cellView.addSubview(_:))
@@ -69,6 +62,12 @@ class HistoryCell: UITableViewCell {
         let duration = Double(wordCounter/16)
         self.lblMetaData.slideAnimation(duration: duration)
 
+    }
+    
+    func setData(data: ScanOutput) {
+        
+        lblDate.text = data.date
+        lblMetaData.text = data.metadata
     }
     
     required init?(coder: NSCoder) {

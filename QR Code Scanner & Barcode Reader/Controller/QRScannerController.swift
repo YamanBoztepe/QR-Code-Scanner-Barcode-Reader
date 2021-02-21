@@ -9,11 +9,11 @@ import UIKit
 import AVFoundation
 import CoreData
 
-let appDelegate = UIApplication.shared.delegate as! AppDelegate
+let appDelegate = UIApplication.shared.delegate as? AppDelegate
+var captureSession = AVCaptureSession()
 
 class QRScannerController: UIViewController {
-
-    fileprivate var captureSession = AVCaptureSession()
+    
     fileprivate var videoPreviewLayer = AVCaptureVideoPreviewLayer()
     
     fileprivate let scanView = ScanView()
@@ -29,26 +29,23 @@ class QRScannerController: UIViewController {
         getInput()
         setLayout()
         setMetaDataOutput()
-        
-        captureSession.startRunning()
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if captureSession.isRunning == false {
+        if !captureSession.isRunning {
             captureSession.startRunning()
         }
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        if captureSession.isRunning == true {
+        if captureSession.isRunning {
             captureSession.stopRunning()
         }
     }
+    
 
     fileprivate func getInput() {
         
@@ -108,10 +105,23 @@ class QRScannerController: UIViewController {
         }
     }
     
-    fileprivate func saveData() {
+    fileprivate func saveData(metadata: String) {
         
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let metadataOutput = MetadataOutput()
+        guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
+        let metadataOutput = ScanOutput(context: managedContext)
+        
+        metadataOutput.metadata = metadata
+        metadataOutput.date = Date().getDate()
+        
+        do {
+            
+            try managedContext.save()
+            print(metadataOutput.metadata!,metadataOutput.date!)
+            
+        } catch {
+            print(error.localizedDescription)
+        }
+        
     }
 
 }
@@ -122,14 +132,12 @@ extension QRScannerController: AVCaptureMetadataOutputObjectsDelegate{
         
         guard let metadataObject = metadataObjects.first, let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject, let stringValue = readableObject.stringValue else { return }
         
-        if let url = URL(string: stringValue) {
-            UIApplication.shared.open(url, options: [:])
-        } else {
+        if captureSession.isRunning {
             captureSession.stopRunning()
-            let vc = OutputTextController()
-            vc.outputText = stringValue
-            navigationController?.pushViewController(vc, animated: true)
         }
+
+        saveData(metadata: stringValue)
+        presentOutput(stringValue: stringValue)
         
     }
     

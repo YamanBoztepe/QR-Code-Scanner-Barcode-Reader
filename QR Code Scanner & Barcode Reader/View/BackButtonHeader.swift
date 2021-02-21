@@ -8,13 +8,13 @@
 import UIKit
 
 
-class HeaderOfHC: CustomBar {
+class BackButtonHeader: CustomBar {
     
     fileprivate let lblTitle: UILabel = {
         let lbl = UILabel()
         lbl.text = "History"
         lbl.textAlignment = .center
-        lbl.textColor = .black
+        lbl.textColor = .gray
         return lbl
     }()
     
@@ -25,6 +25,7 @@ class HeaderOfHC: CustomBar {
     
     fileprivate func setLayout() {
         
+        backgroundColor = .black
         shareButton.isHidden = true
         addSubview(lblTitle)
         

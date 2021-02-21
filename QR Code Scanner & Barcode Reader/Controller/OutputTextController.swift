@@ -43,7 +43,7 @@ class OutputTextController: UIViewController {
     }
     
     @objc fileprivate func backButtonPressed() {
-        navigationController?.popToRootViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
 
 }

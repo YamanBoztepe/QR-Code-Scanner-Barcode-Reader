@@ -5,6 +5,6 @@
         <attribute name="metadata" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="MetadataOutput" positionX="-63" positionY="-18" width="128" height="59"/>
+        <element name="MetadataOutput" positionX="-54" positionY="-9" width="128" height="59"/>
     </elements>
 </model>
