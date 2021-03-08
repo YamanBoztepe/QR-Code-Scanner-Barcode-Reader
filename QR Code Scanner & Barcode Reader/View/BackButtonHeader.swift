@@ -14,7 +14,7 @@ class BackButtonHeader: CustomBar {
         let lbl = UILabel()
         lbl.text = "History"
         lbl.textAlignment = .center
-        lbl.textColor = .gray
+        lbl.textColor = .white
         return lbl
     }()
     
@@ -25,7 +25,7 @@ class BackButtonHeader: CustomBar {
     
     fileprivate func setLayout() {
         
-        backgroundColor = .black
+        backgroundColor = UIColor.rgb(red: 23, green: 23, blue: 23)
         shareButton.isHidden = true
         addSubview(lblTitle)
         

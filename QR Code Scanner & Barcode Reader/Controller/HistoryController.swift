@@ -31,7 +31,7 @@ class HistoryController: UIViewController {
     
     fileprivate func setLayout() {
         
-        extraView.backgroundColor = .black
+        extraView.backgroundColor = UIColor.rgb(red: 23, green: 23, blue: 23)
         tableView.backgroundColor = .darkGray
         
         [extraView,header,tableView].forEach(view.addSubview(_:))
