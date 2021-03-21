@@ -16,6 +16,7 @@
 		1C2DE8DC25C5A45300A528B2 /* QR_Code_Scanner___Barcode_ReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2DE8DB25C5A45300A528B2 /* QR_Code_Scanner___Barcode_ReaderTests.swift */; };
 		1C2DE8E725C5A45300A528B2 /* QR_Code_Scanner___Barcode_ReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2DE8E625C5A45300A528B2 /* QR_Code_Scanner___Barcode_ReaderUITests.swift */; };
 		1C2DE8F825C5AC0800A528B2 /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2DE8F725C5AC0800A528B2 /* Extensions+UIView.swift */; };
+		1C45B063260798C900CD7417 /* InstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C45B062260798C900CD7417 /* InstructionView.swift */; };
 		1C5BFE6725D04A5400C70898 /* OutputTextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5BFE6625D04A5400C70898 /* OutputTextController.swift */; };
 		1C5BFE6C25D04ABA00C70898 /* OutputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5BFE6B25D04ABA00C70898 /* OutputTextView.swift */; };
 		1C7B7C8C25D9CF8E00386035 /* HistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7B7C8B25D9CF8E00386035 /* HistoryController.swift */; };
@@ -62,6 +63,7 @@
 		1C2DE8E625C5A45300A528B2 /* QR_Code_Scanner___Barcode_ReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QR_Code_Scanner___Barcode_ReaderUITests.swift"; sourceTree = "<group>"; };
 		1C2DE8E825C5A45300A528B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C2DE8F725C5AC0800A528B2 /* Extensions+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView.swift"; sourceTree = "<group>"; };
+		1C45B062260798C900CD7417 /* InstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionView.swift; sourceTree = "<group>"; };
 		1C5BFE6625D04A5400C70898 /* OutputTextController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputTextController.swift; sourceTree = "<group>"; };
 		1C5BFE6B25D04ABA00C70898 /* OutputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputTextView.swift; sourceTree = "<group>"; };
 		1C7B7C8B25D9CF8E00386035 /* HistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryController.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				1CED297725D5AC4C0086ED46 /* ScanView.swift */,
 				1C7B7C9325D9D09300386035 /* BackButtonHeader.swift */,
 				1CCAF2E725DD683A00E9A34E /* HistoryCell.swift */,
+				1C45B062260798C900CD7417 /* InstructionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 				1C7B7C8C25D9CF8E00386035 /* HistoryController.swift in Sources */,
 				1C2DE8C425C5A45200A528B2 /* SceneDelegate.swift in Sources */,
 				1C5BFE6725D04A5400C70898 /* OutputTextController.swift in Sources */,
+				1C45B063260798C900CD7417 /* InstructionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,7 +522,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.YamanBoztepe.QR-Code-Scanner-Barcode-Reader";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -539,7 +543,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.YamanBoztepe.QR-Code-Scanner-Barcode-Reader";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

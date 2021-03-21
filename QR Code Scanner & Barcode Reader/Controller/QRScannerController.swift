@@ -17,6 +17,8 @@ class QRScannerController: UIViewController {
     fileprivate var videoPreviewLayer = AVCaptureVideoPreviewLayer()
     
     fileprivate let scanView = ScanView()
+    fileprivate let instructionView = InstructionView()
+    
     fileprivate let historyButton: UIButton = {
         let btn = UIButton()
         btn.setImage(UIImage(named: "HistoryButton"), for: .normal)
@@ -63,16 +65,31 @@ class QRScannerController: UIViewController {
     }
     
     fileprivate func setLayout() {
+        
         setPreviewLayer()
         navigationController?.navigationBar.isHidden = true
+        let isInstructionShowed = UserDefaults.standard.bool(forKey: "isInstructionShowed")
         
-        [scanView,historyButton].forEach(view.addSubview(_:))
+        [scanView,historyButton,instructionView].forEach(view.addSubview(_:))
         
+        _ = instructionView.anchor(top: view.topAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor)
         _ = scanView.anchor(top: view.topAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor)
         _ = historyButton.anchor(top: view.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor,padding: .init(top: view.frame.width/10, left: 0, bottom: 0, right: -5))
         
-        historyButton.addTarget(self, action: #selector(historyButtonPressed), for: .touchUpInside)
+        instructionView.isHidden = isInstructionShowed
         
+        historyButton.addTarget(self, action: #selector(historyButtonPressed), for: .touchUpInside)
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(instructionPressed))
+        instructionView.addGestureRecognizer(gesture)
+    }
+    
+    @objc fileprivate func instructionPressed() {
+        
+        var isInstructionShowed = UserDefaults.standard.bool(forKey: "isInstructionShowed")
+        isInstructionShowed = true
+        UserDefaults.standard.set(isInstructionShowed, forKey: "isInstructionShowed")
+        
+        instructionView.removeFromSuperview()
     }
     
     @objc fileprivate func historyButtonPressed() {
