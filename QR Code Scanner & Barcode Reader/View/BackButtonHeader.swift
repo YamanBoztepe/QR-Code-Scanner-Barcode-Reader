@@ -10,7 +10,7 @@ import UIKit
 
 class BackButtonHeader: CustomBar {
     
-    fileprivate let lblTitle: UILabel = {
+    let lblTitle: UILabel = {
         let lbl = UILabel()
         lbl.text = "History"
         lbl.textAlignment = .center

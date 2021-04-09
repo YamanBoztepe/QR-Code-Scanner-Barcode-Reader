@@ -25,6 +25,15 @@ class QRScannerController: UIViewController {
         return btn
     }()
     
+    fileprivate let generatorButton: UIButton = {
+        let btn = UIButton()
+        btn.setImage(UIImage(systemName: "plus.circle"), for: .normal)
+        btn.contentVerticalAlignment = .fill
+        btn.contentHorizontalAlignment = .fill
+        btn.tintColor = .black
+        return btn
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -70,15 +79,18 @@ class QRScannerController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         let isInstructionShowed = UserDefaults.standard.bool(forKey: "isInstructionShowed")
         
-        [scanView,historyButton,instructionView].forEach(view.addSubview(_:))
+        [scanView,generatorButton,historyButton,instructionView].forEach(view.addSubview(_:))
         
         _ = instructionView.anchor(top: view.topAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor)
         _ = scanView.anchor(top: view.topAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor)
-        _ = historyButton.anchor(top: view.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor,padding: .init(top: view.frame.width/10, left: 0, bottom: 0, right: -5))
+        _ = historyButton.anchor(top: view.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor,padding: .init(top: view.frame.width/10, left: 0, bottom: 0, right: -5),size: .init(width: view.frame.width/5, height: view.frame.height/9))
+        _ = generatorButton.anchor(top: view.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil,padding: .init(top: view.frame.width/10, left: 5, bottom: 0, right: 0), size: .init(width: view.frame.width/5, height: view.frame.height/9))
         
         instructionView.isHidden = isInstructionShowed
         
         historyButton.addTarget(self, action: #selector(historyButtonPressed), for: .touchUpInside)
+        generatorButton.addTarget(self, action: #selector(generatorButtonPressed), for: .touchUpInside)
+        
         let gesture = UITapGestureRecognizer(target: self, action: #selector(instructionPressed))
         instructionView.addGestureRecognizer(gesture)
     }
@@ -95,6 +107,12 @@ class QRScannerController: UIViewController {
     @objc fileprivate func historyButtonPressed() {
         
         let vc = HistoryController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc fileprivate func generatorButtonPressed() {
+        
+        let vc = QRGeneratorController()
         navigationController?.pushViewController(vc, animated: true)
     }
     
