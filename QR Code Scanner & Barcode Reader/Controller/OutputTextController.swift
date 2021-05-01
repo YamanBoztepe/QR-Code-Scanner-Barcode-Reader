@@ -23,7 +23,7 @@ class OutputTextController: UIViewController {
     
     fileprivate func setLayout() {
         
-        extraView.backgroundColor = customBar.backgroundColor
+        extraView.backgroundColor = UIColor.rgb(red: 23, green: 23, blue: 23)
         [outputTextField,customBar,extraView].forEach(view.addSubview(_:))
         
         _ = outputTextField.anchor(top: extraView.topAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor)
@@ -37,7 +37,6 @@ class OutputTextController: UIViewController {
     }
     
     @objc fileprivate func shareButtonPressed() {
-        
         let vc = UIActivityViewController(activityItems: [outputText], applicationActivities: [])
         present(vc, animated: true)
     }

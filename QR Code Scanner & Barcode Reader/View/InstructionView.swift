@@ -11,7 +11,7 @@ class InstructionView: UIView {
     
     
     fileprivate let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
-    fileprivate let historyButtonPlace = UIImageView(image: UIImage(named: "HistoryButton")?.withRenderingMode(.alwaysOriginal))
+    fileprivate let historyButtonPlace = UIImageView(image: UIImage(systemName: "clock")?.withRenderingMode(.alwaysOriginal))
     fileprivate let generatorButtonPlace = UIImageView(image: UIImage(systemName: "plus.circle")?.withRenderingMode(.alwaysOriginal))
     fileprivate let scanImage = UIImageView(image: UIImage(named: "scanningLine")?.withRenderingMode(.alwaysOriginal))
     

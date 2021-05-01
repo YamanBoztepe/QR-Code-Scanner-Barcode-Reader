@@ -55,6 +55,8 @@ extension UIView {
     
     func positionInSuperView(size: CGSize = .zero, centerX: NSLayoutXAxisAnchor?, centerY: NSLayoutYAxisAnchor?) {
         
+        translatesAutoresizingMaskIntoConstraints = false
+        
         if let centerX = centerX {
             centerXAnchor.constraint(equalTo: centerX).isActive = true
         }
@@ -90,5 +92,14 @@ extension UIColor {
     
     static func rgb(red: CGFloat, green: CGFloat, blue: CGFloat) -> UIColor {
         return UIColor(red: red/255, green: green/255, blue: blue/255, alpha: 1)
+    }
+}
+
+extension UIButton {
+    
+    func setDefaultLayout(verticalAlignment: UIControl.ContentVerticalAlignment, horizontalAlignment: UIControl.ContentHorizontalAlignment, color: UIColor) {
+        self.contentVerticalAlignment = verticalAlignment
+        self.contentHorizontalAlignment = horizontalAlignment
+        self.tintColor = color
     }
 }

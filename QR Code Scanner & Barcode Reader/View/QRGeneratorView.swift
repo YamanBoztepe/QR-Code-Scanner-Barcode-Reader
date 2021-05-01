@@ -25,7 +25,7 @@ class QRGeneratorView: UIView {
     let btnGenerate: UIButton = {
         let btn = UIButton()
         btn.setTitle("Generate", for: .normal)
-        btn.backgroundColor = UIColor.rgb(red: 23, green: 23, blue: 23)
+        btn.backgroundColor = UIColor.rgb(red: 38, green: 38, blue: 38)
         btn.isEnabled = false
         return btn
     }()
@@ -48,8 +48,8 @@ class QRGeneratorView: UIView {
         
         btnGenerate.layer.cornerRadius = frame.width/6
         btnGenerate.layer.borderWidth = 5
-        btnGenerate.layer.borderColor = UIColor.red.cgColor
-        btnGenerate.setTitleColor(.red, for: .normal)
+        btnGenerate.layer.borderColor = UIColor.gray.withAlphaComponent(0.3).cgColor
+        btnGenerate.setTitleColor(UIColor.gray.withAlphaComponent(0.3), for: .normal)
         
         header.lblTitle.text = "Generation"
     }

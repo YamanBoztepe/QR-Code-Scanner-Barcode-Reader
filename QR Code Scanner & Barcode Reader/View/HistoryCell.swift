@@ -13,13 +13,13 @@ class HistoryCell: UITableViewCell {
     
     let cellView: UIView = {
         let view = UIView()
-        view.backgroundColor = .darkGray
+        view.backgroundColor = UIColor.rgb(red: 64, green: 64, blue: 64)
         return view
     }()
     
     let lblDate: UILabel = {
         let lbl = UILabel()
-        lbl.textColor = .white
+        lbl.textColor = .lightGray
         lbl.textAlignment = .center
         lbl.text = "00/00/0000"
         return lbl
@@ -27,7 +27,7 @@ class HistoryCell: UITableViewCell {
     
     let lblMetaData: UILabel = {
         let lbl = UILabel()
-        lbl.textColor = .lightGray
+        lbl.textColor = .white
         lbl.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
         return lbl
     }()
@@ -46,17 +46,17 @@ class HistoryCell: UITableViewCell {
     
     fileprivate func setLayout() {
         
-        backgroundColor = .gray
+        backgroundColor = UIColor.rgb(red: 38, green: 38, blue: 38)
         selectionStyle = .none
         
         [lblDate,lblMetaData].forEach(cellView.addSubview(_:))
         addSubview(cellView)
         
         _ = cellView.anchor(top: topAnchor, bottom: bottomAnchor, leading: leadingAnchor, trailing: trailingAnchor,padding: .init(top: frame.height/10, left: 0, bottom: 0, right: 0))
-        _ = lblDate.anchor(top: cellView.topAnchor, bottom: nil, leading: cellView.leadingAnchor, trailing: nil,padding: .init(top: frame.height/10, left: frame.width/3.5, bottom: 0, right: 0))
+        _ = lblDate.anchor(top: cellView.topAnchor, bottom: nil, leading: nil, trailing: cellView.trailingAnchor,padding: .init(top: frame.height/10, left: 0, bottom: 0, right: -frame.width/12))
         _ = lblMetaData.anchor(top: lblDate.bottomAnchor, bottom: cellView.bottomAnchor, leading: cellView.leadingAnchor, trailing: nil, padding: .init(top: frame.height/10, left: 0, bottom: 0, right: 0))
         
-        lblDate.font = UIFont.boldSystemFont(ofSize: frame.width/15)
+        lblDate.font = UIFont.boldSystemFont(ofSize: frame.width/20)
         
         guard let wordCounter = lblMetaData.text?.count else { return }
         let duration = Double(wordCounter/16)

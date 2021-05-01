@@ -6,18 +6,21 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class QRGeneratorController: UIViewController {
 
     let qrGeneratorView = QRGeneratorView()
     var data = ""
+    var imageSaved: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        requestAds()
         qrGeneratorView.txtData.delegate = self
         setLayout()
     }
+    
     
     fileprivate func setLayout() {
         
@@ -35,6 +38,9 @@ class QRGeneratorController: UIViewController {
     
     fileprivate func generateQRCode(from string: String) {
         
+        presentAds()
+        interstitial?.fullScreenContentDelegate = self
+        
         let data = string.data(using: .ascii)
         
         if let filter = CIFilter(name: "CIQRCodeGenerator") {
@@ -49,15 +55,23 @@ class QRGeneratorController: UIViewController {
         }
     }
     
+    fileprivate func presentImageSavedAlert() {
+        let alert = UIAlertController(title: "Completed", message: "QR Code is saved in your album", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
     @objc fileprivate func generatorButtonPressed() {
         generateQRCode(from: data)
     }
     
     @objc fileprivate func generationCompleted(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         
-        let alert = UIAlertController(title: "Completed", message: "QR Code is saved in your album", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
+        imageSaved = true
+        
+        if interstitial == nil {
+            presentImageSavedAlert()
+        }
     }
     
     @objc fileprivate func backButtonPressed() {
@@ -72,14 +86,34 @@ extension QRGeneratorController: UITextFieldDelegate {
         
         if textField.text?.count ?? 0 > 0 {
             qrGeneratorView.btnGenerate.isEnabled = true
-            qrGeneratorView.btnGenerate.layer.borderColor = UIColor.green.cgColor
-            qrGeneratorView.btnGenerate.setTitleColor(.green, for: .normal)
+            qrGeneratorView.btnGenerate.layer.borderColor = UIColor.rgb(red: 0, green: 128, blue: 0).cgColor
+            qrGeneratorView.btnGenerate.setTitleColor(UIColor.rgb(red: 0, green: 128, blue: 0), for: .normal)
             data = textField.text!
         } else {
             qrGeneratorView.btnGenerate.isEnabled = false
-            qrGeneratorView.btnGenerate.layer.borderColor = UIColor.red.cgColor
-            qrGeneratorView.btnGenerate.setTitleColor(.red, for: .normal)
+            qrGeneratorView.btnGenerate.layer.borderColor = UIColor.gray.withAlphaComponent(0.3).cgColor
+            qrGeneratorView.btnGenerate.setTitleColor(UIColor.gray.withAlphaComponent(0.3), for: .normal)
             data = "empty"
         }
     }
+}
+
+extension QRGeneratorController: GADFullScreenContentDelegate {
+    
+    func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
+        presentImageSavedAlert()
+      }
+
+      /// Tells the delegate that the ad presented full screen content.
+      func adDidPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+        print("Ad did present full screen content.")
+      }
+
+      /// Tells the delegate that the ad dismissed full screen content.
+      func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+        
+        if imageSaved {
+            presentImageSavedAlert()
+        }
+      }
 }

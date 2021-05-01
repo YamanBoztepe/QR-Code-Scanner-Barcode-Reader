@@ -8,6 +8,7 @@
 import UIKit
 import AVFoundation
 import CoreData
+import StoreKit
 
 let appDelegate = UIApplication.shared.delegate as? AppDelegate
 var captureSession = AVCaptureSession()
@@ -21,26 +22,32 @@ class QRScannerController: UIViewController {
     
     fileprivate let historyButton: UIButton = {
         let btn = UIButton()
-        btn.setImage(UIImage(named: "HistoryButton"), for: .normal)
+        btn.setImage(UIImage(systemName: "clock"), for: .normal)
+        btn.setDefaultLayout(verticalAlignment: .fill, horizontalAlignment: .fill, color: .black)
         return btn
     }()
     
     fileprivate let generatorButton: UIButton = {
         let btn = UIButton()
         btn.setImage(UIImage(systemName: "plus.circle"), for: .normal)
-        btn.contentVerticalAlignment = .fill
-        btn.contentHorizontalAlignment = .fill
-        btn.tintColor = .black
+        btn.setDefaultLayout(verticalAlignment: .fill, horizontalAlignment: .fill, color: .black)
         return btn
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        requestAds()
         getInput()
         setLayout()
         setMetaDataOutput()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        requestReview()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -70,6 +77,16 @@ class QRScannerController: UIViewController {
             
         } catch {
             print(error.localizedDescription)
+        }
+    }
+    
+    fileprivate func requestReview() {
+        let appUsageCounter = UserDefaults.standard.integer(forKey: "appUsageCounter")
+        
+        if appUsageCounter == 3 {
+            guard let scene = view.window?.windowScene else { return }
+            SKStoreReviewController.requestReview(in: scene)
+            UserDefaults.standard.set(-4, forKey: "appUsageCounter")
         }
     }
     

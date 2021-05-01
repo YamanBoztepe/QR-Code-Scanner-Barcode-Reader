@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import GoogleMobileAds
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        var appUsageCounter = UserDefaults.standard.integer(forKey: "appUsageCounter")
+        appUsageCounter += 1
+        UserDefaults.standard.set(appUsageCounter, forKey: "appUsageCounter")
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        
         return true
     }
 

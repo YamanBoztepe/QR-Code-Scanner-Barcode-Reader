@@ -18,7 +18,7 @@ class HistoryController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        requestAds()
         setLayout()
         navigationController?.navigationBar.isHidden = true
     }
@@ -32,7 +32,8 @@ class HistoryController: UIViewController {
     fileprivate func setLayout() {
         
         extraView.backgroundColor = UIColor.rgb(red: 23, green: 23, blue: 23)
-        tableView.backgroundColor = .darkGray
+        tableView.backgroundColor = UIColor.rgb(red: 38, green: 38, blue: 38)
+        tableView.separatorStyle = .none
         
         [extraView,header,tableView].forEach(view.addSubview(_:))
         

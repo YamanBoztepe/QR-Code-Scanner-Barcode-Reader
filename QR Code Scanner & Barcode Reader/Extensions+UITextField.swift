@@ -28,3 +28,14 @@ extension UITextField {
         self.resignFirstResponder()
     }
 }
+
+extension String {
+    
+    func shortURL() -> String {
+        
+        if self.hasPrefix("www.") {
+            return String(self.dropFirst(4))
+        }
+        return self
+    }
+}
