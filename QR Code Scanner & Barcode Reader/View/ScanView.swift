@@ -23,8 +23,6 @@ class ScanView: UIView {
     }
     fileprivate func setLayout() {
         
-        
-        
         let scanImageHeight = frame.height/2
         
         [scanImage,topBlurEffectView,bottomBlurEffectView,leadingBlurEffectView,trailingBlurEffectView].forEach(addSubview(_:))

@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 import GoogleMobileAds
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appUsageCounter += 1
         UserDefaults.standard.set(appUsageCounter, forKey: "appUsageCounter")
         GADMobileAds.sharedInstance().start(completionHandler: nil)
+        FirebaseApp.configure()
         
         return true
     }

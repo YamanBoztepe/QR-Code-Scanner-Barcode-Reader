@@ -16,6 +16,7 @@ var captureSession = AVCaptureSession()
 class QRScannerController: UIViewController {
     
     fileprivate var videoPreviewLayer = AVCaptureVideoPreviewLayer()
+    fileprivate var isFrontCameraActive = false
     
     fileprivate let scanView = ScanView()
     fileprivate let instructionView = InstructionView()
@@ -30,6 +31,20 @@ class QRScannerController: UIViewController {
     fileprivate let generatorButton: UIButton = {
         let btn = UIButton()
         btn.setImage(UIImage(systemName: "plus.circle"), for: .normal)
+        btn.setDefaultLayout(verticalAlignment: .fill, horizontalAlignment: .fill, color: .black)
+        return btn
+    }()
+    
+    fileprivate let flashButton: UIButton = {
+        let btn = UIButton()
+        btn.setImage(UIImage(systemName: "bolt.circle"), for: .normal)
+        btn.setDefaultLayout(verticalAlignment: .fill, horizontalAlignment: .fill, color: .black)
+        return btn
+    }()
+    
+    fileprivate let flipCameraButton: UIButton = {
+        let btn = UIButton()
+        btn.setImage(UIImage(systemName: "arrow.triangle.2.circlepath.circle"), for: .normal)
         btn.setDefaultLayout(verticalAlignment: .fill, horizontalAlignment: .fill, color: .black)
         return btn
     }()
@@ -64,20 +79,11 @@ class QRScannerController: UIViewController {
         }
     }
     
-
     fileprivate func getInput() {
         
         guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
         
-        do {
-            let videoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
-            if captureSession.canAddInput(videoInput) {
-                captureSession.addInput(videoInput)
-            }
-            
-        } catch {
-            print(error.localizedDescription)
-        }
+        addInputInCaptureSession(videoCaptureDevice)
     }
     
     fileprivate func requestReview() {
@@ -96,17 +102,22 @@ class QRScannerController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         let isInstructionShowed = UserDefaults.standard.bool(forKey: "isInstructionShowed")
         
-        [scanView,generatorButton,historyButton,instructionView].forEach(view.addSubview(_:))
+        [scanView,generatorButton,historyButton,flashButton,flipCameraButton,instructionView].forEach(view.addSubview(_:))
         
         _ = instructionView.anchor(top: view.topAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor)
         _ = scanView.anchor(top: view.topAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor)
-        _ = historyButton.anchor(top: view.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor,padding: .init(top: view.frame.width/10, left: 0, bottom: 0, right: -5),size: .init(width: view.frame.width/5, height: view.frame.height/9))
-        _ = generatorButton.anchor(top: view.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil,padding: .init(top: view.frame.width/10, left: 5, bottom: 0, right: 0), size: .init(width: view.frame.width/5, height: view.frame.height/9))
+        _ = historyButton.anchor(top: view.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor,padding: .init(top: view.frame.width/5, left: 0, bottom: 0, right: -5),size: .init(width: view.frame.width/5, height: view.frame.height/9))
+        _ = generatorButton.anchor(top: view.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil,padding: .init(top: view.frame.width/5, left: 5, bottom: 0, right: 0), size: .init(width: view.frame.width/5, height: view.frame.height/9))
+        _ = flashButton.anchor(top: nil, bottom: view.bottomAnchor, leading: nil, trailing: historyButton.trailingAnchor,padding: .init(top: 0, left: 0, bottom: -view.frame.width/5, right: 0),size: .init(width: view.frame.width/5, height: view.frame.height/9))
+        _ = flipCameraButton.anchor(top: nil, bottom: view.bottomAnchor, leading: generatorButton.leadingAnchor, trailing: nil,padding: .init(top: 0, left: 0, bottom: -view.frame.width/5, right: 0),size: .init(width: view.frame.width/5, height: view.frame.height/9))
         
-        instructionView.isHidden = isInstructionShowed
+        //instructionView.isHidden = isInstructionShowed
+        instructionView.isHidden = true
         
         historyButton.addTarget(self, action: #selector(historyButtonPressed), for: .touchUpInside)
         generatorButton.addTarget(self, action: #selector(generatorButtonPressed), for: .touchUpInside)
+        flashButton.addTarget(self, action: #selector(flashButtonPressed), for: .touchUpInside)
+        flipCameraButton.addTarget(self, action: #selector(flipCameraButtonPressed), for: .touchUpInside)
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(instructionPressed))
         instructionView.addGestureRecognizer(gesture)
@@ -131,6 +142,44 @@ class QRScannerController: UIViewController {
         
         let vc = QRGeneratorController()
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc fileprivate func flashButtonPressed() {
+        guard let device = AVCaptureDevice.default(for: .video) else { return }
+        
+        if device.hasTorch {
+            do {
+                try device.lockForConfiguration()
+                
+                if device.torchMode == .off {
+                    device.torchMode = .on
+                    try device.setTorchModeOn(level: AVCaptureDevice.maxAvailableTorchLevel)
+                    
+                } else {
+                    device.torchMode = .off
+                }
+                device.unlockForConfiguration()
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    @objc fileprivate func flipCameraButtonPressed() {
+        captureSession.inputs.forEach { captureSession.removeInput($0) }
+        
+        if !isFrontCameraActive {
+            guard let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front) else { return }
+            addInputInCaptureSession(device)
+            isFrontCameraActive = true
+        } else {
+            guard let device = AVCaptureDevice.default(for: .video) else { return }
+            addInputInCaptureSession(device)
+            isFrontCameraActive = false
+        }
+        
+        flashButton.isEnabled = !isFrontCameraActive
+        
     }
     
     fileprivate func setPreviewLayer() {
@@ -174,6 +223,18 @@ class QRScannerController: UIViewController {
             print(error.localizedDescription)
         }
         
+    }
+    
+    fileprivate func addInputInCaptureSession(_ videoCaptureDevice: AVCaptureDevice) {
+        do {
+            let videoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
+            if captureSession.canAddInput(videoInput) {
+                captureSession.addInput(videoInput)
+            }
+            
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 
 }

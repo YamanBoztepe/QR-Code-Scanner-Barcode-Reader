@@ -22,6 +22,7 @@
 		1C5746D4261FAC6F001C80B9 /* Extensions+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5746D3261FAC6F001C80B9 /* Extensions+UITextField.swift */; };
 		1C5BFE6725D04A5400C70898 /* OutputTextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5BFE6625D04A5400C70898 /* OutputTextController.swift */; };
 		1C5BFE6C25D04ABA00C70898 /* OutputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5BFE6B25D04ABA00C70898 /* OutputTextView.swift */; };
+		1C7623B1263E01E800150D69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1C7623B0263E01E800150D69 /* GoogleService-Info.plist */; };
 		1C7B7C8C25D9CF8E00386035 /* HistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7B7C8B25D9CF8E00386035 /* HistoryController.swift */; };
 		1C7B7C9425D9D09300386035 /* BackButtonHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7B7C9325D9D09300386035 /* BackButtonHeader.swift */; };
 		1C88673926389D6800DDB155 /* WebController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C88673826389D6800DDB155 /* WebController.swift */; };
@@ -78,6 +79,7 @@
 		1C5746D3261FAC6F001C80B9 /* Extensions+UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UITextField.swift"; sourceTree = "<group>"; };
 		1C5BFE6625D04A5400C70898 /* OutputTextController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputTextController.swift; sourceTree = "<group>"; };
 		1C5BFE6B25D04ABA00C70898 /* OutputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputTextView.swift; sourceTree = "<group>"; };
+		1C7623B0263E01E800150D69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		1C7B7C8B25D9CF8E00386035 /* HistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryController.swift; sourceTree = "<group>"; };
 		1C7B7C9325D9D09300386035 /* BackButtonHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButtonHeader.swift; sourceTree = "<group>"; };
 		1C88673826389D6800DDB155 /* WebController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebController.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				1C2DE8CF25C5A45300A528B2 /* LaunchScreen.storyboard */,
 				1C2DE8C125C5A45200A528B2 /* AppDelegate.swift */,
 				1C2DE8C325C5A45200A528B2 /* SceneDelegate.swift */,
+				1C7623B0263E01E800150D69 /* GoogleService-Info.plist */,
 				1C2DE8D225C5A45300A528B2 /* Info.plist */,
 				1C2DE8CD25C5A45300A528B2 /* Assets.xcassets */,
 				1CF331DF25E05E76008A43A6 /* MetadataOutput.xcdatamodeld */,
@@ -351,6 +354,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C2DE8D125C5A45300A528B2 /* LaunchScreen.storyboard in Resources */,
+				1C7623B1263E01E800150D69 /* GoogleService-Info.plist in Resources */,
 				1C2DE8CE25C5A45300A528B2 /* Assets.xcassets in Resources */,
 				1C2DE8C925C5A45200A528B2 /* Main.storyboard in Resources */,
 			);
@@ -688,7 +692,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.1.7;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-l\"c++\"",
@@ -768,7 +772,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.1.7;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-l\"c++\"",
